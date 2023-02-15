@@ -89,11 +89,17 @@
                                                 <rect key="frame" x="124.33333333333334" y="0.0" width="124.33333333333334" height="106"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" image="empty"/>
+                                                <connections>
+                                                    <action selector="button2Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aHd-Vc-PfK"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qyk-Kp-dQ0">
                                                 <rect key="frame" x="248.66666666666671" y="0.0" width="124.33333333333334" height="106"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" image="empty"/>
+                                                <connections>
+                                                    <action selector="button3Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mvn-Bj-hN1"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -104,16 +110,25 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="124.33333333333333" height="106"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" image="empty"/>
+                                                <connections>
+                                                    <action selector="button4Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cLs-04-ViR"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tOH-gJ-Vg3">
                                                 <rect key="frame" x="124.33333333333334" y="0.0" width="124.33333333333334" height="106"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" image="empty"/>
+                                                <connections>
+                                                    <action selector="button5Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="n7A-j8-cz9"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u2C-AT-NHI">
                                                 <rect key="frame" x="248.66666666666671" y="0.0" width="124.33333333333334" height="106"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" image="empty"/>
+                                                <connections>
+                                                    <action selector="button6Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KHJ-6O-Vw8"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -124,16 +139,25 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="124.33333333333333" height="106"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" image="empty"/>
+                                                <connections>
+                                                    <action selector="button7Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="82k-qp-1CR"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BKr-xY-mEK">
                                                 <rect key="frame" x="124.33333333333334" y="0.0" width="124.33333333333334" height="106"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" image="empty"/>
+                                                <connections>
+                                                    <action selector="button8Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="okH-da-t9X"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IFN-QU-avH">
                                                 <rect key="frame" x="248.66666666666671" y="0.0" width="124.33333333333334" height="106"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" image="empty"/>
+                                                <connections>
+                                                    <action selector="button9Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y51-EC-ydQ"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -185,6 +209,14 @@
                     </view>
                     <connections>
                         <outlet property="button1" destination="P3C-mF-IOy" id="0fS-Ql-wr8"/>
+                        <outlet property="button2" destination="KmP-aQ-qVT" id="NuB-Na-znk"/>
+                        <outlet property="button3" destination="qyk-Kp-dQ0" id="6zT-gd-oVp"/>
+                        <outlet property="button4" destination="a8H-Ze-a7r" id="gQY-4f-Lu4"/>
+                        <outlet property="button5" destination="tOH-gJ-Vg3" id="mP1-TZ-KLr"/>
+                        <outlet property="button6" destination="u2C-AT-NHI" id="peQ-7s-tRn"/>
+                        <outlet property="button7" destination="KCY-rP-crj" id="jyH-w4-Vgh"/>
+                        <outlet property="button8" destination="BKr-xY-mEK" id="Qc8-qX-5PL"/>
+                        <outlet property="button9" destination="IFN-QU-avH" id="uJR-5K-7yV"/>
                         <outlet property="gifImageView" destination="CHb-ud-aEf" id="bp1-lZ-tmS"/>
                         <outlet property="scoreLabel" destination="gxp-mJ-Rf0" id="NxS-Vp-ovK"/>
                         <outlet property="startButton" destination="xW0-TO-GQM" id="j7f-kj-qx4"/>
