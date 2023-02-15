@@ -13,6 +13,8 @@
 		DDB26B30299B0EB500D1130F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDB26B2E299B0EB500D1130F /* Main.storyboard */; };
 		DDB26B32299B0EB500D1130F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDB26B31299B0EB500D1130F /* Assets.xcassets */; };
 		DDB26B35299B0EB500D1130F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDB26B33299B0EB500D1130F /* LaunchScreen.storyboard */; };
+		DDB26B3F299B399D00D1130F /* Gifu in Frameworks */ = {isa = PBXBuildFile; productRef = DDB26B3E299B399D00D1130F /* Gifu */; };
+		DDB26B43299B3AFE00D1130F /* 문어움짤.gif in Resources */ = {isa = PBXBuildFile; fileRef = DDB26B42299B3AFE00D1130F /* 문어움짤.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,7 @@
 		DDB26B31299B0EB500D1130F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DDB26B34299B0EB500D1130F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DDB26B36299B0EB500D1130F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DDB26B42299B3AFE00D1130F /* 문어움짤.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "문어움짤.gif"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDB26B3F299B399D00D1130F /* Gifu in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +65,7 @@
 				DDB26B2C299B0EB500D1130F /* ViewController.swift */,
 				DDB26B2E299B0EB500D1130F /* Main.storyboard */,
 				DDB26B31299B0EB500D1130F /* Assets.xcassets */,
+				DDB26B42299B3AFE00D1130F /* 문어움짤.gif */,
 				DDB26B33299B0EB500D1130F /* LaunchScreen.storyboard */,
 				DDB26B36299B0EB500D1130F /* Info.plist */,
 			);
@@ -83,6 +88,9 @@
 			dependencies = (
 			);
 			name = Week4;
+			packageProductDependencies = (
+				DDB26B3E299B399D00D1130F /* Gifu */,
+			);
 			productName = Week4;
 			productReference = DDB26B25299B0EB500D1130F /* Week4.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +119,9 @@
 				Base,
 			);
 			mainGroup = DDB26B1C299B0EB500D1130F;
+			packageReferences = (
+				DDB26B3D299B399D00D1130F /* XCRemoteSwiftPackageReference "Gifu" */,
+			);
 			productRefGroup = DDB26B26299B0EB500D1130F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -128,6 +139,7 @@
 				DDB26B35299B0EB500D1130F /* LaunchScreen.storyboard in Resources */,
 				DDB26B32299B0EB500D1130F /* Assets.xcassets in Resources */,
 				DDB26B30299B0EB500D1130F /* Main.storyboard in Resources */,
+				DDB26B43299B3AFE00D1130F /* 문어움짤.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +370,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DDB26B3D299B399D00D1130F /* XCRemoteSwiftPackageReference "Gifu" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kaishin/Gifu.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.2.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DDB26B3E299B399D00D1130F /* Gifu */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DDB26B3D299B399D00D1130F /* XCRemoteSwiftPackageReference "Gifu" */;
+			productName = Gifu;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DDB26B1D299B0EB500D1130F /* Project object */;
 }
