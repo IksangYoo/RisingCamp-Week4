@@ -652,6 +652,8 @@ class ViewController: UIViewController {
         score = 0
         scoreLabel.text = String(score)
         
+        currentActionType = ""
+        
         반죽버튼.setImage(UIImage(named: "notSelected0"), for: .normal)
         문어버튼.setImage(UIImage(named: "notSelected1"), for: .normal)
         뒤집기버튼.setImage(UIImage(named: "notSelected2"), for: .normal)
