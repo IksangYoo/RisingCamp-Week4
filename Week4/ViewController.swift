@@ -15,7 +15,7 @@ enum actionType: String {
     case 빼기 = "빼기"
 }
 
-enum buttonStatus: String {
+enum buttonstate: String {
     case empty = "empty"
     case 반죽 = "반죽"
     case 문어 = "문어"
@@ -43,44 +43,42 @@ class ViewController: UIViewController {
     @IBOutlet weak var button7: UIButton!
     @IBOutlet weak var button8: UIButton!
     @IBOutlet weak var button9: UIButton!
-    
-    @IBOutlet weak var timeLabel: UILabel!
 
     var button1Time = 0
     var timer1 : Timer?
-    var button1Status = buttonStatus.empty.rawValue
+    var button1state = buttonstate.empty.rawValue
     
     var button2Time = 0
     var timer2 : Timer?
-    var button2Status = buttonStatus.empty.rawValue
+    var button2state = buttonstate.empty.rawValue
     
     var button3Time = 0
     var timer3 : Timer?
-    var button3Status = buttonStatus.empty.rawValue
+    var button3state = buttonstate.empty.rawValue
     
     var button4Time = 0
     var timer4 : Timer?
-    var button4Status = buttonStatus.empty.rawValue
+    var button4state = buttonstate.empty.rawValue
     
     var button5Time = 0
     var timer5 : Timer?
-    var button5Status = buttonStatus.empty.rawValue
+    var button5state = buttonstate.empty.rawValue
     
     var button6Time = 0
     var timer6 : Timer?
-    var button6Status = buttonStatus.empty.rawValue
+    var button6state = buttonstate.empty.rawValue
     
     var button7Time = 0
     var timer7 : Timer?
-    var button7Status = buttonStatus.empty.rawValue
+    var button7state = buttonstate.empty.rawValue
     
     var button8Time = 0
     var timer8 : Timer?
-    var button8Status = buttonStatus.empty.rawValue
+    var button8state = buttonstate.empty.rawValue
     
     var button9Time = 0
     var timer9 : Timer?
-    var button9Status = buttonStatus.empty.rawValue
+    var button9state = buttonstate.empty.rawValue
     
     var timeLimitTimer: Timer?
     var timeLimit = 60
@@ -91,6 +89,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         gifImageView.animate(withGIFNamed: "문어움짤.gif")
+        startButton.layer.cornerRadius = 13
+        startButton.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        startButton.layer.borderWidth = 3
         makeAllbuttonIsEnabled(bool: false)
     }
 
@@ -100,6 +101,7 @@ class ViewController: UIViewController {
             timeLimitLabel.text = String(timeLimit)
             reset()
         } else {
+            startButton.alpha = 0.5
             makeAllbuttonIsEnabled(bool: true)
             timeLimitTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timeLimitContol), userInfo: nil, repeats: true)
         }
@@ -113,12 +115,11 @@ class ViewController: UIViewController {
         
         if timeLimit == 0 {
             timeLimitTimer?.invalidate()
-            timeLimitLabel.text = "Game Over"
             gameOver()
             timeLimit = 60
             startButton.isEnabled = true
             startButton.setTitle("Reset", for: .normal)
-            
+            startButton.alpha = 1
         }
     }
     
@@ -144,35 +145,35 @@ class ViewController: UIViewController {
     
     @IBAction func button1Pressed(_ sender: UIButton) {
         
-        if button1Status == buttonStatus.empty.rawValue {
+        if button1state == buttonstate.empty.rawValue {
             if currentActionType == actionType.반죽.rawValue {
-                button1Status = buttonStatus.반죽.rawValue
-                button1.setImage(UIImage(named: button1Status), for: .normal)
+                button1state = buttonstate.반죽.rawValue
+                button1.setImage(UIImage(named: button1state), for: .normal)
             }
-        } else if button1Status == buttonStatus.반죽.rawValue {
+        } else if button1state == buttonstate.반죽.rawValue {
             if currentActionType == actionType.문어.rawValue {
-                button1Status = buttonStatus.문어.rawValue
-                button1.setImage(UIImage(named: button1Status), for: .normal)
+                button1state = buttonstate.문어.rawValue
+                button1.setImage(UIImage(named: button1state), for: .normal)
             }
-        } else if button1Status == buttonStatus.문어.rawValue {
+        } else if button1state == buttonstate.문어.rawValue {
             if currentActionType == actionType.뒤집기.rawValue {
                 timer1 = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(button1Timer), userInfo: nil, repeats: true)
-                button1Status = buttonStatus.뒤집기.rawValue
-                button1.setImage(UIImage(named: button1Status), for: .normal)
+                button1state = buttonstate.뒤집기.rawValue
+                button1.setImage(UIImage(named: button1state), for: .normal)
             }
         } else if currentActionType == actionType.빼기.rawValue {
-            if button1Status == buttonStatus.완성.rawValue {
+            if button1state == buttonstate.완성.rawValue {
                 score += 1
                 scoreLabel.text = String(score)
-                button1Status = buttonStatus.empty.rawValue
-                button1.setImage(UIImage(named: button1Status), for: .normal)
+                button1state = buttonstate.empty.rawValue
+                button1.setImage(UIImage(named: button1state), for: .normal)
                 timer1?.invalidate()
                 button1Time = 0
-            } else if button1Status == buttonStatus.실패.rawValue {
+            } else if button1state == buttonstate.실패.rawValue {
                 score -= 1
                 scoreLabel.text = String(score)
-                button1Status = buttonStatus.empty.rawValue
-                button1.setImage(UIImage(named: button1Status), for: .normal)
+                button1state = buttonstate.empty.rawValue
+                button1.setImage(UIImage(named: button1state), for: .normal)
                 timer1?.invalidate()
                 button1Time = 0
             }
@@ -180,35 +181,35 @@ class ViewController: UIViewController {
     }
     
     @IBAction func button2Pressed(_ sender: UIButton) {
-        if button2Status == buttonStatus.empty.rawValue {
+        if button2state == buttonstate.empty.rawValue {
             if currentActionType == actionType.반죽.rawValue {
-                button2Status = buttonStatus.반죽.rawValue
-                button2.setImage(UIImage(named: button2Status), for: .normal)
+                button2state = buttonstate.반죽.rawValue
+                button2.setImage(UIImage(named: button2state), for: .normal)
             }
-        } else if button2Status == buttonStatus.반죽.rawValue {
+        } else if button2state == buttonstate.반죽.rawValue {
             if currentActionType == actionType.문어.rawValue {
-                button2Status = buttonStatus.문어.rawValue
-                button2.setImage(UIImage(named: button2Status), for: .normal)
+                button2state = buttonstate.문어.rawValue
+                button2.setImage(UIImage(named: button2state), for: .normal)
             }
-        } else if button2Status == buttonStatus.문어.rawValue {
+        } else if button2state == buttonstate.문어.rawValue {
             if currentActionType == actionType.뒤집기.rawValue {
                 timer2 = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(button2Timer), userInfo: nil, repeats: true)
-                button2Status = buttonStatus.뒤집기.rawValue
-                button2.setImage(UIImage(named: button2Status), for: .normal)
+                button2state = buttonstate.뒤집기.rawValue
+                button2.setImage(UIImage(named: button2state), for: .normal)
             }
         } else if currentActionType == actionType.빼기.rawValue {
-            if button2Status == buttonStatus.완성.rawValue {
+            if button2state == buttonstate.완성.rawValue {
                 score += 1
                 scoreLabel.text = String(score)
-                button2Status = buttonStatus.empty.rawValue
-                button2.setImage(UIImage(named: button2Status), for: .normal)
+                button2state = buttonstate.empty.rawValue
+                button2.setImage(UIImage(named: button2state), for: .normal)
                 timer2?.invalidate()
                 button2Time = 0
-            } else if button2Status == buttonStatus.실패.rawValue {
+            } else if button2state == buttonstate.실패.rawValue {
                 score -= 1
                 scoreLabel.text = String(score)
-                button2Status = buttonStatus.empty.rawValue
-                button2.setImage(UIImage(named: button2Status), for: .normal)
+                button2state = buttonstate.empty.rawValue
+                button2.setImage(UIImage(named: button2state), for: .normal)
                 timer2?.invalidate()
                 button2Time = 0
             }
@@ -216,35 +217,35 @@ class ViewController: UIViewController {
     }
     
     @IBAction func button3Pressed(_ sender: UIButton) {
-        if button3Status == buttonStatus.empty.rawValue {
+        if button3state == buttonstate.empty.rawValue {
             if currentActionType == actionType.반죽.rawValue {
-                button3Status = buttonStatus.반죽.rawValue
-                button3.setImage(UIImage(named: button3Status), for: .normal)
+                button3state = buttonstate.반죽.rawValue
+                button3.setImage(UIImage(named: button3state), for: .normal)
             }
-        } else if button3Status == buttonStatus.반죽.rawValue {
+        } else if button3state == buttonstate.반죽.rawValue {
             if currentActionType == actionType.문어.rawValue {
-                button3Status = buttonStatus.문어.rawValue
-                button3.setImage(UIImage(named: button3Status), for: .normal)
+                button3state = buttonstate.문어.rawValue
+                button3.setImage(UIImage(named: button3state), for: .normal)
             }
-        } else if button3Status == buttonStatus.문어.rawValue {
+        } else if button3state == buttonstate.문어.rawValue {
             if currentActionType == actionType.뒤집기.rawValue {
                 timer3 = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(button3Timer), userInfo: nil, repeats: true)
-                button3Status = buttonStatus.뒤집기.rawValue
-                button3.setImage(UIImage(named: button3Status), for: .normal)
+                button3state = buttonstate.뒤집기.rawValue
+                button3.setImage(UIImage(named: button3state), for: .normal)
             }
         } else if currentActionType == actionType.빼기.rawValue {
-            if button3Status == buttonStatus.완성.rawValue {
+            if button3state == buttonstate.완성.rawValue {
                 score += 1
                 scoreLabel.text = String(score)
-                button3Status = buttonStatus.empty.rawValue
-                button3.setImage(UIImage(named: button3Status), for: .normal)
+                button3state = buttonstate.empty.rawValue
+                button3.setImage(UIImage(named: button3state), for: .normal)
                 timer3?.invalidate()
                 button3Time = 0
-            } else if button3Status == buttonStatus.실패.rawValue {
+            } else if button3state == buttonstate.실패.rawValue {
                 score -= 1
                 scoreLabel.text = String(score)
-                button3Status = buttonStatus.empty.rawValue
-                button3.setImage(UIImage(named: button3Status), for: .normal)
+                button3state = buttonstate.empty.rawValue
+                button3.setImage(UIImage(named: button3state), for: .normal)
                 timer3?.invalidate()
                 button3Time = 0
             }
@@ -252,210 +253,210 @@ class ViewController: UIViewController {
     }
     
     @IBAction func button4Pressed(_ sender: UIButton) {
-        if button4Status == buttonStatus.empty.rawValue {
+        if button4state == buttonstate.empty.rawValue {
             if currentActionType == actionType.반죽.rawValue {
-                button4Status = buttonStatus.반죽.rawValue
-                button4.setImage(UIImage(named: button4Status), for: .normal)
+                button4state = buttonstate.반죽.rawValue
+                button4.setImage(UIImage(named: button4state), for: .normal)
             }
-        } else if button4Status == buttonStatus.반죽.rawValue {
+        } else if button4state == buttonstate.반죽.rawValue {
             if currentActionType == actionType.문어.rawValue {
-                button4Status = buttonStatus.문어.rawValue
-                button4.setImage(UIImage(named: button4Status), for: .normal)
+                button4state = buttonstate.문어.rawValue
+                button4.setImage(UIImage(named: button4state), for: .normal)
             }
-        } else if button4Status == buttonStatus.문어.rawValue {
+        } else if button4state == buttonstate.문어.rawValue {
             if currentActionType == actionType.뒤집기.rawValue {
                 timer4 = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(button4Timer), userInfo: nil, repeats: true)
-                button4Status = buttonStatus.뒤집기.rawValue
-                button4.setImage(UIImage(named: button4Status), for: .normal)
+                button4state = buttonstate.뒤집기.rawValue
+                button4.setImage(UIImage(named: button4state), for: .normal)
             }
         } else if currentActionType == actionType.빼기.rawValue {
-            if button4Status == buttonStatus.완성.rawValue {
+            if button4state == buttonstate.완성.rawValue {
                 score += 1
                 scoreLabel.text = String(score)
-                button4Status = buttonStatus.empty.rawValue
-                button4.setImage(UIImage(named: button4Status), for: .normal)
+                button4state = buttonstate.empty.rawValue
+                button4.setImage(UIImage(named: button4state), for: .normal)
                 timer4?.invalidate()
                 button4Time = 0
-            } else if button4Status == buttonStatus.실패.rawValue {
+            } else if button4state == buttonstate.실패.rawValue {
                 score -= 1
                 scoreLabel.text = String(score)
-                button4Status = buttonStatus.empty.rawValue
-                button4.setImage(UIImage(named: button4Status), for: .normal)
+                button4state = buttonstate.empty.rawValue
+                button4.setImage(UIImage(named: button4state), for: .normal)
                 timer4?.invalidate()
                 button4Time = 0
             }
         }
     }
     @IBAction func button5Pressed(_ sender: UIButton) {
-        if button5Status == buttonStatus.empty.rawValue {
+        if button5state == buttonstate.empty.rawValue {
             if currentActionType == actionType.반죽.rawValue {
-                button5Status = buttonStatus.반죽.rawValue
-                button5.setImage(UIImage(named: button5Status), for: .normal)
+                button5state = buttonstate.반죽.rawValue
+                button5.setImage(UIImage(named: button5state), for: .normal)
             }
-        } else if button5Status == buttonStatus.반죽.rawValue {
+        } else if button5state == buttonstate.반죽.rawValue {
             if currentActionType == actionType.문어.rawValue {
-                button5Status = buttonStatus.문어.rawValue
-                button5.setImage(UIImage(named: button5Status), for: .normal)
+                button5state = buttonstate.문어.rawValue
+                button5.setImage(UIImage(named: button5state), for: .normal)
             }
-        } else if button5Status == buttonStatus.문어.rawValue {
+        } else if button5state == buttonstate.문어.rawValue {
             if currentActionType == actionType.뒤집기.rawValue {
                 timer5 = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(button5Timer), userInfo: nil, repeats: true)
-                button5Status = buttonStatus.뒤집기.rawValue
-                button5.setImage(UIImage(named: button5Status), for: .normal)
+                button5state = buttonstate.뒤집기.rawValue
+                button5.setImage(UIImage(named: button5state), for: .normal)
             }
         } else if currentActionType == actionType.빼기.rawValue {
-            if button5Status == buttonStatus.완성.rawValue {
+            if button5state == buttonstate.완성.rawValue {
                 score += 1
                 scoreLabel.text = String(score)
-                button5Status = buttonStatus.empty.rawValue
-                button5.setImage(UIImage(named: button5Status), for: .normal)
+                button5state = buttonstate.empty.rawValue
+                button5.setImage(UIImage(named: button5state), for: .normal)
                 timer5?.invalidate()
                 button5Time = 0
-            } else if button5Status == buttonStatus.실패.rawValue {
+            } else if button5state == buttonstate.실패.rawValue {
                 score -= 1
                 scoreLabel.text = String(score)
-                button5Status = buttonStatus.empty.rawValue
-                button5.setImage(UIImage(named: button5Status), for: .normal)
+                button5state = buttonstate.empty.rawValue
+                button5.setImage(UIImage(named: button5state), for: .normal)
                 timer5?.invalidate()
                 button5Time = 0
             }
         }
     }
     @IBAction func button6Pressed(_ sender: UIButton) {
-        if button6Status == buttonStatus.empty.rawValue {
+        if button6state == buttonstate.empty.rawValue {
             if currentActionType == actionType.반죽.rawValue {
-                button6Status = buttonStatus.반죽.rawValue
-                button6.setImage(UIImage(named: button6Status), for: .normal)
+                button6state = buttonstate.반죽.rawValue
+                button6.setImage(UIImage(named: button6state), for: .normal)
             }
-        } else if button6Status == buttonStatus.반죽.rawValue {
+        } else if button6state == buttonstate.반죽.rawValue {
             if currentActionType == actionType.문어.rawValue {
-                button6Status = buttonStatus.문어.rawValue
-                button6.setImage(UIImage(named: button6Status), for: .normal)
+                button6state = buttonstate.문어.rawValue
+                button6.setImage(UIImage(named: button6state), for: .normal)
             }
-        } else if button6Status == buttonStatus.문어.rawValue {
+        } else if button6state == buttonstate.문어.rawValue {
             if currentActionType == actionType.뒤집기.rawValue {
                 timer6 = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(button6Timer), userInfo: nil, repeats: true)
-                button6Status = buttonStatus.뒤집기.rawValue
-                button6.setImage(UIImage(named: button6Status), for: .normal)
+                button6state = buttonstate.뒤집기.rawValue
+                button6.setImage(UIImage(named: button6state), for: .normal)
             }
         } else if currentActionType == actionType.빼기.rawValue {
-            if button6Status == buttonStatus.완성.rawValue {
+            if button6state == buttonstate.완성.rawValue {
                 score += 1
                 scoreLabel.text = String(score)
-                button6Status = buttonStatus.empty.rawValue
-                button6.setImage(UIImage(named: button6Status), for: .normal)
+                button6state = buttonstate.empty.rawValue
+                button6.setImage(UIImage(named: button6state), for: .normal)
                 timer6?.invalidate()
                 button6Time = 0
-            } else if button6Status == buttonStatus.실패.rawValue {
+            } else if button6state == buttonstate.실패.rawValue {
                 score -= 1
                 scoreLabel.text = String(score)
-                button6Status = buttonStatus.empty.rawValue
-                button6.setImage(UIImage(named: button6Status), for: .normal)
+                button6state = buttonstate.empty.rawValue
+                button6.setImage(UIImage(named: button6state), for: .normal)
                 timer6?.invalidate()
                 button6Time = 0
             }
         }
     }
     @IBAction func button7Pressed(_ sender: UIButton) {
-        if button7Status == buttonStatus.empty.rawValue {
+        if button7state == buttonstate.empty.rawValue {
             if currentActionType == actionType.반죽.rawValue {
-                button7Status = buttonStatus.반죽.rawValue
-                button7.setImage(UIImage(named: button7Status), for: .normal)
+                button7state = buttonstate.반죽.rawValue
+                button7.setImage(UIImage(named: button7state), for: .normal)
             }
-        } else if button7Status == buttonStatus.반죽.rawValue {
+        } else if button7state == buttonstate.반죽.rawValue {
             if currentActionType == actionType.문어.rawValue {
-                button7Status = buttonStatus.문어.rawValue
-                button7.setImage(UIImage(named: button7Status), for: .normal)
+                button7state = buttonstate.문어.rawValue
+                button7.setImage(UIImage(named: button7state), for: .normal)
             }
-        } else if button7Status == buttonStatus.문어.rawValue {
+        } else if button7state == buttonstate.문어.rawValue {
             if currentActionType == actionType.뒤집기.rawValue {
                 timer7 = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(button7Timer), userInfo: nil, repeats: true)
-                button7Status = buttonStatus.뒤집기.rawValue
-                button7.setImage(UIImage(named: button7Status), for: .normal)
+                button7state = buttonstate.뒤집기.rawValue
+                button7.setImage(UIImage(named: button7state), for: .normal)
             }
         } else if currentActionType == actionType.빼기.rawValue {
-            if button7Status == buttonStatus.완성.rawValue {
+            if button7state == buttonstate.완성.rawValue {
                 score += 1
                 scoreLabel.text = String(score)
-                button7Status = buttonStatus.empty.rawValue
-                button7.setImage(UIImage(named: button7Status), for: .normal)
+                button7state = buttonstate.empty.rawValue
+                button7.setImage(UIImage(named: button7state), for: .normal)
                 timer7?.invalidate()
                 button7Time = 0
-            } else if button7Status == buttonStatus.실패.rawValue {
+            } else if button7state == buttonstate.실패.rawValue {
                 score -= 1
                 scoreLabel.text = String(score)
-                button7Status = buttonStatus.empty.rawValue
-                button7.setImage(UIImage(named: button7Status), for: .normal)
+                button7state = buttonstate.empty.rawValue
+                button7.setImage(UIImage(named: button7state), for: .normal)
                 timer7?.invalidate()
                 button7Time = 0
             }
         }
     }
     @IBAction func button8Pressed(_ sender: UIButton) {
-        if button8Status == buttonStatus.empty.rawValue {
+        if button8state == buttonstate.empty.rawValue {
             if currentActionType == actionType.반죽.rawValue {
-                button8Status = buttonStatus.반죽.rawValue
-                button8.setImage(UIImage(named: button8Status), for: .normal)
+                button8state = buttonstate.반죽.rawValue
+                button8.setImage(UIImage(named: button8state), for: .normal)
             }
-        } else if button8Status == buttonStatus.반죽.rawValue {
+        } else if button8state == buttonstate.반죽.rawValue {
             if currentActionType == actionType.문어.rawValue {
-                button8Status = buttonStatus.문어.rawValue
-                button8.setImage(UIImage(named: button8Status), for: .normal)
+                button8state = buttonstate.문어.rawValue
+                button8.setImage(UIImage(named: button8state), for: .normal)
             }
-        } else if button8Status == buttonStatus.문어.rawValue {
+        } else if button8state == buttonstate.문어.rawValue {
             if currentActionType == actionType.뒤집기.rawValue {
                 timer8 = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(button8Timer), userInfo: nil, repeats: true)
-                button8Status = buttonStatus.뒤집기.rawValue
-                button8.setImage(UIImage(named: button8Status), for: .normal)
+                button8state = buttonstate.뒤집기.rawValue
+                button8.setImage(UIImage(named: button8state), for: .normal)
             }
         } else if currentActionType == actionType.빼기.rawValue {
-            if button8Status == buttonStatus.완성.rawValue {
+            if button8state == buttonstate.완성.rawValue {
                 score += 1
                 scoreLabel.text = String(score)
-                button8Status = buttonStatus.empty.rawValue
-                button8.setImage(UIImage(named: button8Status), for: .normal)
+                button8state = buttonstate.empty.rawValue
+                button8.setImage(UIImage(named: button8state), for: .normal)
                 timer8?.invalidate()
                 button8Time = 0
-            } else if button8Status == buttonStatus.실패.rawValue {
+            } else if button8state == buttonstate.실패.rawValue {
                 score -= 1
                 scoreLabel.text = String(score)
-                button8Status = buttonStatus.empty.rawValue
-                button8.setImage(UIImage(named: button8Status), for: .normal)
+                button8state = buttonstate.empty.rawValue
+                button8.setImage(UIImage(named: button8state), for: .normal)
                 timer8?.invalidate()
                 button8Time = 0
             }
         }
     }
     @IBAction func button9Pressed(_ sender: UIButton) {
-        if button9Status == buttonStatus.empty.rawValue {
+        if button9state == buttonstate.empty.rawValue {
             if currentActionType == actionType.반죽.rawValue {
-                button9Status = buttonStatus.반죽.rawValue
-                button9.setImage(UIImage(named: button9Status), for: .normal)
+                button9state = buttonstate.반죽.rawValue
+                button9.setImage(UIImage(named: button9state), for: .normal)
             }
-        } else if button9Status == buttonStatus.반죽.rawValue {
+        } else if button9state == buttonstate.반죽.rawValue {
             if currentActionType == actionType.문어.rawValue {
-                button9Status = buttonStatus.문어.rawValue
-                button9.setImage(UIImage(named: button9Status), for: .normal)
+                button9state = buttonstate.문어.rawValue
+                button9.setImage(UIImage(named: button9state), for: .normal)
             }
-        } else if button9Status == buttonStatus.문어.rawValue {
+        } else if button9state == buttonstate.문어.rawValue {
             if currentActionType == actionType.뒤집기.rawValue {
                 timer9 = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(button9Timer), userInfo: nil, repeats: true)
-                button9Status = buttonStatus.뒤집기.rawValue
-                button9.setImage(UIImage(named: button9Status), for: .normal)
+                button9state = buttonstate.뒤집기.rawValue
+                button9.setImage(UIImage(named: button9state), for: .normal)
             }
         } else if currentActionType == actionType.빼기.rawValue {
-            if button9Status == buttonStatus.완성.rawValue {
+            if button9state == buttonstate.완성.rawValue {
                 score += 1
                 scoreLabel.text = String(score)
-                button9Status = buttonStatus.empty.rawValue
-                button9.setImage(UIImage(named: button9Status), for: .normal)
+                button9state = buttonstate.empty.rawValue
+                button9.setImage(UIImage(named: button9state), for: .normal)
                 timer9?.invalidate()
                 button9Time = 0
-            } else if button9Status == buttonStatus.실패.rawValue {
+            } else if button9state == buttonstate.실패.rawValue {
                 score -= 1
                 scoreLabel.text = String(score)
-                button9Status = buttonStatus.empty.rawValue
-                button9.setImage(UIImage(named: button9Status), for: .normal)
+                button9state = buttonstate.empty.rawValue
+                button9.setImage(UIImage(named: button9state), for: .normal)
                 timer9?.invalidate()
                 button9Time = 0
             }
@@ -467,16 +468,15 @@ class ViewController: UIViewController {
     
     @objc func button1Timer() {
         button1Time += 1
-        timeLabel.text = String(button1Time)
         
         if button1Time == 7 {
-            button1Status = buttonStatus.완성.rawValue
-            button1.setImage(UIImage(named: button1Status), for: .normal)
+            button1state = buttonstate.완성.rawValue
+            button1.setImage(UIImage(named: button1state), for: .normal)
         }
         
         if button1Time == 14 {
-            button1Status = buttonStatus.실패.rawValue
-            button1.setImage(UIImage(named: button1Status), for: .normal)
+            button1state = buttonstate.실패.rawValue
+            button1.setImage(UIImage(named: button1state), for: .normal)
         }
     }
     
@@ -484,13 +484,13 @@ class ViewController: UIViewController {
         button2Time += 1
         
         if button2Time == 7 {
-            button2Status = buttonStatus.완성.rawValue
-            button2.setImage(UIImage(named: button2Status), for: .normal)
+            button2state = buttonstate.완성.rawValue
+            button2.setImage(UIImage(named: button2state), for: .normal)
         }
         
         if button2Time == 14 {
-            button2Status = buttonStatus.실패.rawValue
-            button2.setImage(UIImage(named: button2Status), for: .normal)
+            button2state = buttonstate.실패.rawValue
+            button2.setImage(UIImage(named: button2state), for: .normal)
         }
     }
     
@@ -498,13 +498,13 @@ class ViewController: UIViewController {
         button3Time += 1
         
         if button3Time == 7 {
-            button3Status = buttonStatus.완성.rawValue
-            button3.setImage(UIImage(named: button3Status), for: .normal)
+            button3state = buttonstate.완성.rawValue
+            button3.setImage(UIImage(named: button3state), for: .normal)
         }
         
         if button3Time == 14 {
-            button3Status = buttonStatus.실패.rawValue
-            button3.setImage(UIImage(named: button3Status), for: .normal)
+            button3state = buttonstate.실패.rawValue
+            button3.setImage(UIImage(named: button3state), for: .normal)
         }
     }
     
@@ -512,13 +512,13 @@ class ViewController: UIViewController {
         button4Time += 1
         
         if button4Time == 7 {
-            button4Status = buttonStatus.완성.rawValue
-            button4.setImage(UIImage(named: button4Status), for: .normal)
+            button4state = buttonstate.완성.rawValue
+            button4.setImage(UIImage(named: button4state), for: .normal)
         }
         
         if button4Time == 14 {
-            button4Status = buttonStatus.실패.rawValue
-            button4.setImage(UIImage(named: button4Status), for: .normal)
+            button4state = buttonstate.실패.rawValue
+            button4.setImage(UIImage(named: button4state), for: .normal)
         }
     }
     
@@ -526,13 +526,13 @@ class ViewController: UIViewController {
         button5Time += 1
         
         if button5Time == 7 {
-            button5Status = buttonStatus.완성.rawValue
-            button5.setImage(UIImage(named: button5Status), for: .normal)
+            button5state = buttonstate.완성.rawValue
+            button5.setImage(UIImage(named: button5state), for: .normal)
         }
         
         if button5Time == 14 {
-            button5Status = buttonStatus.실패.rawValue
-            button5.setImage(UIImage(named: button5Status), for: .normal)
+            button5state = buttonstate.실패.rawValue
+            button5.setImage(UIImage(named: button5state), for: .normal)
         }
     }
     
@@ -540,13 +540,13 @@ class ViewController: UIViewController {
         button6Time += 1
         
         if button6Time == 7 {
-            button6Status = buttonStatus.완성.rawValue
-            button6.setImage(UIImage(named: button6Status), for: .normal)
+            button6state = buttonstate.완성.rawValue
+            button6.setImage(UIImage(named: button6state), for: .normal)
         }
         
         if button6Time == 14 {
-            button6Status = buttonStatus.실패.rawValue
-            button6.setImage(UIImage(named: button6Status), for: .normal)
+            button6state = buttonstate.실패.rawValue
+            button6.setImage(UIImage(named: button6state), for: .normal)
         }
     }
     
@@ -554,13 +554,13 @@ class ViewController: UIViewController {
         button7Time += 1
         
         if button7Time == 7 {
-            button7Status = buttonStatus.완성.rawValue
-            button7.setImage(UIImage(named: button7Status), for: .normal)
+            button7state = buttonstate.완성.rawValue
+            button7.setImage(UIImage(named: button7state), for: .normal)
         }
         
         if button7Time == 14 {
-            button7Status = buttonStatus.실패.rawValue
-            button7.setImage(UIImage(named: button7Status), for: .normal)
+            button7state = buttonstate.실패.rawValue
+            button7.setImage(UIImage(named: button7state), for: .normal)
         }
     }
     
@@ -568,13 +568,13 @@ class ViewController: UIViewController {
         button8Time += 1
         
         if button8Time == 7 {
-            button8Status = buttonStatus.완성.rawValue
-            button8.setImage(UIImage(named: button8Status), for: .normal)
+            button8state = buttonstate.완성.rawValue
+            button8.setImage(UIImage(named: button8state), for: .normal)
         }
         
         if button8Time == 14 {
-            button8Status = buttonStatus.실패.rawValue
-            button8.setImage(UIImage(named: button8Status), for: .normal)
+            button8state = buttonstate.실패.rawValue
+            button8.setImage(UIImage(named: button8state), for: .normal)
         }
     }
     
@@ -582,13 +582,13 @@ class ViewController: UIViewController {
         button9Time += 1
         
         if button9Time == 7 {
-            button9Status = buttonStatus.완성.rawValue
-            button9.setImage(UIImage(named: button9Status), for: .normal)
+            button9state = buttonstate.완성.rawValue
+            button9.setImage(UIImage(named: button9state), for: .normal)
         }
         
         if button9Time == 14 {
-            button9Status = buttonStatus.실패.rawValue
-            button9.setImage(UIImage(named: button9Status), for: .normal)
+            button9state = buttonstate.실패.rawValue
+            button9.setImage(UIImage(named: button9state), for: .normal)
         }
     }
     
@@ -667,24 +667,24 @@ class ViewController: UIViewController {
         button8Time = 0
         button9Time = 0
         
-        button1Status = buttonStatus.empty.rawValue
-        button2Status = buttonStatus.empty.rawValue
-        button3Status = buttonStatus.empty.rawValue
-        button4Status = buttonStatus.empty.rawValue
-        button5Status = buttonStatus.empty.rawValue
-        button6Status = buttonStatus.empty.rawValue
-        button7Status = buttonStatus.empty.rawValue
-        button8Status = buttonStatus.empty.rawValue
-        button9Status = buttonStatus.empty.rawValue
+        button1state = buttonstate.empty.rawValue
+        button2state = buttonstate.empty.rawValue
+        button3state = buttonstate.empty.rawValue
+        button4state = buttonstate.empty.rawValue
+        button5state = buttonstate.empty.rawValue
+        button6state = buttonstate.empty.rawValue
+        button7state = buttonstate.empty.rawValue
+        button8state = buttonstate.empty.rawValue
+        button9state = buttonstate.empty.rawValue
         
-        button1.setImage(UIImage(named: button1Status), for: .normal)
-        button2.setImage(UIImage(named: button2Status), for: .normal)
-        button3.setImage(UIImage(named: button3Status), for: .normal)
-        button4.setImage(UIImage(named: button4Status), for: .normal)
-        button5.setImage(UIImage(named: button5Status), for: .normal)
-        button6.setImage(UIImage(named: button6Status), for: .normal)
-        button7.setImage(UIImage(named: button7Status), for: .normal)
-        button8.setImage(UIImage(named: button8Status), for: .normal)
-        button9.setImage(UIImage(named: button9Status), for: .normal)
+        button1.setImage(UIImage(named: button1state), for: .normal)
+        button2.setImage(UIImage(named: button2state), for: .normal)
+        button3.setImage(UIImage(named: button3state), for: .normal)
+        button4.setImage(UIImage(named: button4state), for: .normal)
+        button5.setImage(UIImage(named: button5state), for: .normal)
+        button6.setImage(UIImage(named: button6state), for: .normal)
+        button7.setImage(UIImage(named: button7state), for: .normal)
+        button8.setImage(UIImage(named: button8state), for: .normal)
+        button9.setImage(UIImage(named: button9state), for: .normal)
     }
 }
